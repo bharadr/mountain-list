@@ -1,0 +1,19 @@
+<h1><%= title %></h1>
+<p><%= description %></p>
+
+<h2>Mountains in <%= title %></h2>
+<% if (mountains.length) { %>
+<ol>
+    <% mountains.forEach(function(mountain) { %>
+    <li>
+        <a href="<%= mountain.url %>"><%= mountain.name %> (<%= mountain.height %>)</a>
+    </li>
+    <% }); %>
+</ol>
+<% } else { %>
+<p>This region has no mountains.</p>
+<% } %>
+
+<a href="/region/<%= id %>/update">Update Region</a>
+<a href="/region/<%= id %>/delete">Delete Region</a>
+<a href="/region/create">Create Region</a>

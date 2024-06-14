@@ -1,0 +1,27 @@
+<h1><%= title %></h1>
+<p>Height: <%= mountain.height %></p>
+<p>Location: <a href="https://www.google.com/maps?q=<%=mountain.location[0]%>,<%=mountain.location[1]%>">(<%=mountain.location[0]%>,<%=mountain.location[1]%>)</a> in <a href="<%= mountain.region.url %>"><%= mountain.region.name %></a></p>
+<% if (mountain.attempts.length > 0) { %>
+    <p>Dates of Attempts</p>
+    <ol>
+    <% mountain.attempts.forEach(function(attempt) { %>
+        <li><%= attempt %></li>
+    <% }); %>
+    </ol>
+<% } else { %>
+    <p>This mountain has had no attempts.</p>
+<% } %>
+<% if (mountain.summits.length > 0) { %>
+    <p>Dates of Summits</p>
+    <ol>
+    <% mountain.summits.forEach(function(summit) { %>
+        <li><%= summit %></li>
+    <% }); %>
+    </ol>
+<% } else { %>
+    <p>This mountain has had no summits.</p>
+<% } %>
+
+<a href="/mountain/<%= id %>/update">Update Mountain</a>
+<a href="/mountain/<%= id %>/delete">Delete Mountain</a>
+<a href="/mountain/create">Create Mountain</a>

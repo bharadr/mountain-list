@@ -1,0 +1,23 @@
+<p>Do you really want to delete this Region?</p>
+
+<% if (mountains.length) { %>
+<p><strong>Deleting the following region will also delete all these mountains.</strong></p>
+<div style="margin-left:20px;margin-top:20px">
+    <h4>Mountains in Region</h4>
+    <dl>
+    <% mountains.forEach(function(mountain) { %>
+        <dt>
+        <a href="<%= mountain.url %>"><%= mountain.name %></a>
+        </dt>
+    <% }); %>
+    </dl>
+</div>
+<% } %>
+  
+
+<form method="POST">
+    <div class="form-group">
+        <input id="regionid" class="form-control" type="hidden" name="regionid" value="<%= region._id %>">
+    </div>
+    <button class="btn btn-primary" type="submit">Delete</button>
+</form>

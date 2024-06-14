@@ -1,0 +1,22 @@
+<h1><%= title %></h1>
+
+<form method="POST">
+  <div class="form-group">
+    <label for="name">Region Name:</label>
+    <input id="name" class="form-control" type="text" placeholder="Name of region" name="name" required value="<%= region === undefined ? '' : region.name %>">
+  </div>
+  <div class="form-group">
+    <label for="description">Description:</label>
+    <textarea id="description" class="form-control" placeholder="Description of Region" name="description" required><%= region === undefined ? '' : region.description %></textarea>
+  </div>
+  <button class="btn btn-primary" type="submit">Submit</button>
+</form>
+
+<% if (errors) { %>
+    <ul>
+      <% errors.forEach(function(error) { %>
+        <li><%= error.msg %></li>
+      <% }); %>
+    </ul>
+<% } %>
+  

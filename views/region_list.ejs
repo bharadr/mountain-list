@@ -1,0 +1,16 @@
+<h1><%= title %></h1>
+
+<% if (region_list.length) { %>
+  <ul>
+    <% region_list.forEach(function(region) { %>
+      <li>
+        <a href="<%= region.url %>"><%= region.name %></a>
+        (<%= region.mountainCount %>)
+      </li>
+    <% }); %>
+  </ul>
+<% } else { %>
+  <p>There are no regions.</p>
+<% } %>
+
+<a href="/region/create">Create Region</a>

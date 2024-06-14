@@ -1,0 +1,11 @@
+
+<h1><%= title %>: <%= mountain.name %></h1>
+
+<p>Do you really want to delete this Mountain?</p>
+
+<form method="POST">
+    <div class="form-group">
+        <input id="mountainid" class="form-control" type="hidden" name="mountainid" value="<%= mountain._id %>">
+    </div>
+    <button class="btn btn-primary" type="submit">Delete</button>
+</form>

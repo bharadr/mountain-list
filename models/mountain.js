@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const MountainSchema = new Schema({
-    name: { type: String, required: true, maxLength: 100 },
+    name: { type: String, required: true, maxLength: 100, unique: true },
     height: { type: Number, required: true, min: 1 }, // height in feet
     location: { 
       type: [Number], required: true,
@@ -18,7 +18,7 @@ const MountainSchema = new Schema({
   
 MountainSchema.virtual("url").get(function () {
     // We don't use an arrow function as we'll need the this object
-    return `/mountains/${this._id}`;
+    return `/mountain/${this._id}`;
 });
 
 module.exports = mongoose.model('Mountain', MountainSchema);

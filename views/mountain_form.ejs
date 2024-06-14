@@ -1,0 +1,34 @@
+<h1><%= title %></h1>
+
+<form id="mountain-form" method="POST">
+    <div class="form-group">
+      <label for="name">Mountain Name:</label>
+      <input id="name" class="form-control" type="text" placeholder="Name of mountain" name="name" required maxlength="100" value="<%= mountain === undefined ? '' : mountain.name %>">
+    </div>
+    <div class="form-group">
+      <label for="height">Height (in feet):</label>
+      <input id="height" class="form-control" type="number" placeholder="Height in feet" name="height" required min="1" value="<%= mountain === undefined ? '' : mountain.height %>">
+    </div>
+    <div class="form-group">
+        <label for="location">Location (latitude, longitude):</label>
+        <input id="location-lat" class="form-control" type="number" step="any" placeholder="Latitude" name="lat" required value="<%= mountain === undefined ? '' : mountain.location[0] %>">
+        <input id="location-lon" class="form-control" type="number" step="any" placeholder="Longitude" name="lon" required value="<%= mountain === undefined ? '' : mountain.location[1] %>">
+    </div>
+    <div class="form-group">
+      <label for="region">Region:</label>
+      <select id="region" class="form-control" name="region" required>
+        <% regions.forEach(function(region) { %>
+          <option value="<%= region._id %>" <%= mountain && mountain.region.equals(region._id) ? 'selected' : '' %>><%= region.name %></option>
+        <% }); %>
+      </select>
+    </div>
+    <button class="btn btn-primary" type="submit">Submit</button>
+</form>
+  
+<% if (errors) { %>
+    <ul>
+      <% errors.forEach(function(error) { %>
+        <li><%= error.msg %></li>
+      <% }); %>
+    </ul>
+<% } %>

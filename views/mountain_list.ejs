@@ -1,0 +1,17 @@
+<h1><%= title %></h1>
+
+<% if (mountains.length) { %>
+  <ul>
+    <% mountains.forEach(function(mountain) { %>
+      <li>
+        <a href="<%= mountain.url %>"><%= mountain.name %></a>
+        (<%= mountain.height %> ft)  in <a href="https://www.google.com/maps?q=<%=mountain.location[0]%>,<%=mountain.location[1]%>"><%= mountain.region.name %></a>
+      </li>
+    <% }); %>
+  </ul>
+<% } else { %>
+  <p>There are no mountains.</p>
+<% } %>
+
+
+<a href="/mountain/create">Create New Mountain</a>
