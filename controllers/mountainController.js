@@ -82,10 +82,20 @@ exports.mountain_create_post = [
             location: [req.body.lat, req.body.lon],
             region: req.body.region,
         });
-        await mountain.save();
-        // Find the corresponding region and update its mountains field
-        await Region.findByIdAndUpdate(req.body.region, { $push: { mountains: mountain._id } });
-        res.redirect(mountain.url);
+        try {
+            await mountain.save();
+                // Find the corresponding region and update its mountains field
+                await Region.findByIdAndUpdate(req.body.region, { $push: { mountains: mountain._id } });
+                res.redirect(mountain.url);
+            } catch(error) {
+            let serverError = {msg: error.errorResponse.errmsg}
+            res.render("mountain_form", {
+                title: "Create Mountain",
+                mountain: undefined,
+                regions: allRegions,
+                errors: [serverError],
+            });
+        }
       }
     ),
 ];

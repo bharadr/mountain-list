@@ -7,7 +7,7 @@ const mountain_controller = require("../controllers/mountainController");
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  res.render('index', { title: 'Mountain list' });
 });
 
 // GET request for list of all Region items.

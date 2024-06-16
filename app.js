@@ -44,6 +44,9 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
+  if (err.status === 404) {
+    res.locals.error.stack = 'Cannot find a webpage with this URL'
+  }
   res.render('error');
 });
 

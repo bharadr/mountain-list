@@ -67,7 +67,6 @@ exports.region_create_post = [
         name: newName,
         description: newDescription,
       });
-  
       if (!errors.isEmpty()) {
         res.render("region_form", {
             title: "Create Region",
@@ -75,9 +74,17 @@ exports.region_create_post = [
             errors: errors.array(),
         });
       } else {
-        // Data from form is valid. Save region.
-        await region.save();
-        res.redirect(region.url);
+        try {
+            await region.save();
+            res.redirect(region.url);
+        } catch(error) {
+            let serverError = {msg: error.errorResponse.errmsg}
+            res.render("region_form", {
+                title: "Create Region",
+                region: undefined,
+                errors: [serverError],
+            });
+        }
       }
     }),
 ];
